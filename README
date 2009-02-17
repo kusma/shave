@@ -1,0 +1,6 @@
+shave transforms the messy ouput of autotools into a pretty Kbuild-like one.
+
+shave         : the actual thing
+test-flat-nolt: flat layout, no use of litool (broken!)
+test-flat-lt  : flat layout, use of libtool
+test-lt       : common layout, libtooled, with noinst libs
