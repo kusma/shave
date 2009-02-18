@@ -4,3 +4,9 @@ shave         : the actual thing
 test-flat-nolt: flat layout, no use of litool (broken!)
 test-flat-lt  : flat layout, use of libtool
 test-lt       : common layout, libtooled, with noinst libs
+
+To use the tests:
+	* cd $test
+	* autoreconf --install
+	* ./configure
+	* make
