@@ -25,12 +25,12 @@ AC_CHECK_PROG(SED,sed,sed,false)
 dnl substitute libtool
 SHAVE_SAVED_LIBTOOL=$LIBTOOL
 AC_SUBST(SHAVE_SAVED_LIBTOOL)
-LIBTOOL='$(SHELL) $(shavedir)/shave-libtool "$(SHAVE_SAVED_LIBTOOL)"'
+LIBTOOL="\$(SHELL) \$(shavedir)/shave-libtool '\$(SHAVE_SAVED_LIBTOOL)'"
 AC_SUBST(LIBTOOL)
 dnl substitute cc
 SHAVE_SAVED_CC=$CC
 AC_SUBST(SHAVE_SAVED_CC)
-CC='$(SHELL) $(shavedir)/shave cc "$(SHAVE_SAVED_CC)"'
+CC="\$(SHELL) \$(shavedir)/shave cc '\$(SHAVE_SAVED_CC)'"
 AC_SUBST(CC)
 ])
 
