@@ -2,7 +2,7 @@ dnl Make automake/libtool output more friendly to humans
 dnl
 dnl SHAVE_INIT([shavedir])
 dnl
-dnl shavedir: the directory where the shave script is, it defaults to 
+dnl shavedir: the directory where the shave script is, it defaults to
 dnl           $(top_builddir)
 dnl
 dnl * SHAVE_INIT should be called late in your configure.(ac|in) file (just

@@ -61,7 +61,7 @@ output=$last_result
 
 if test -z $V; then
     if test $pass_through -eq 0; then
-        echo "$Q$output" 
+        echo "$Q$output"
     fi
     $REEL_TOOL $preserved_args
 else
