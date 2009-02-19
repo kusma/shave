@@ -29,8 +29,12 @@ LIBTOOL="\$(SHELL) \$(shavedir)/shave-libtool '\$(SHAVE_SAVED_LIBTOOL)'"
 AC_SUBST(LIBTOOL)
 dnl substitute cc
 SHAVE_SAVED_CC=$CC
+SHAVE_SAVED_CXX=$CXX
 AC_SUBST(SHAVE_SAVED_CC)
+AC_SUBST(SHAVE_SAVED_CXX)
 CC="\$(SHELL) \$(shavedir)/shave cc '\$(SHAVE_SAVED_CC)'"
+CXX="\$(SHELL) \$(shavedir)/shave cxx '\$(SHAVE_SAVED_CXX)'"
 AC_SUBST(CC)
+AC_SUBST(CXX)
 ])
 

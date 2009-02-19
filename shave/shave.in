@@ -41,14 +41,14 @@ while test "$#" -gt 0; do
 done
 
 # mode=link is handled in the libtool wrapper
-case "$mode" in
-compile)
-    Q="  CC    "
-    ;;
-link)
+case "$mode,$tool" in
+link,*)
     pass_through=1
     ;;
-*)
+compile,cxx)
+    Q="  CXX   "
+    ;;
+compile,cc|*,*)
     # no "libtool" mode has been given, we are called by the Makefile:
     # -> assume compilation
     mode=compile
