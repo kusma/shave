@@ -2,11 +2,11 @@ dnl Make automake/libtool output more friendly to humans
 dnl
 dnl SHAVE_INIT([shavedir])
 dnl
-dnl shavedir: the directory where the shave script is, it defaults to
+dnl shavedir: the directory where the shave scripts are, it defaults to
 dnl           $(top_builddir)
 dnl
 dnl * SHAVE_INIT should be called late in your configure.(ac|in) file (just
-dnl   before AC_CONFIG_FILE/AC_OUTPUT is perfect.  This macro rewrite CC and
+dnl   before AC_CONFIG_FILE/AC_OUTPUT is perfect.  This macro rewrites CC and
 dnl   LIBTOOL, you don't want the configure tests to have these variables
 dnl   re-defined.
 dnl * This macro requires GNU make's -s option.
