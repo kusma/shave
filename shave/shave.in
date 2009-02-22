@@ -20,6 +20,7 @@ shift
 REEL_TOOL="$1"
 shift
 
+hint_cxx=0
 pass_through=0
 preserved_args=
 while test "$#" -gt 0; do
@@ -34,6 +35,10 @@ while test "$#" -gt 0; do
         lt_output="$1"
         preserved_args="$preserved_args $opt"
 	;;
+    g++)
+        hint_cxx=1
+        preserved_args="$preserved_args $opt"
+	;;
     *)
         preserved_args="$preserved_args $opt"
         ;;
@@ -45,13 +50,14 @@ case "$mode,$tool" in
 link,*)
     pass_through=1
     ;;
-compile,cxx)
+*,cxx)
     Q="  CXX   "
     ;;
-compile,cc|*,*)
-    # no "libtool" mode has been given, we are called by the Makefile:
-    # -> assume compilation
-    mode=compile
+*,cc)
+    Q="  CC    "
+    ;;
+*,*)
+    # should not happen
     Q="  CC    "
     ;;
 esac

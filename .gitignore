@@ -20,4 +20,5 @@ stamp-*
 *.o
 *.lo
 *.la
+*.pc
 .*.sw?
