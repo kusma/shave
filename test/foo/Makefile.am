@@ -1,6 +1,4 @@
-V         = @
-Q         = $(V:1=)
-QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+SHAVE_GEN = $(Q:@=@echo '  GEN   '$@;)
 
 lib_LTLIBRARIES = libfoo.la
 
@@ -12,6 +10,6 @@ libfoo_la_LIBADD  = internal/libinternal.la
 BUILT_SOURCES = lib-file2.h
 
 lib-file2.h: Makefile
-	$(QUIET_GEN)echo "#define FOO_DEFINE 0xbabe" > lib-file2.h
+	$(SHAVE_GEN)echo "#define FOO_DEFINE 0xbabe" > lib-file2.h
 
 CLEANFILES = lib-file2.h
