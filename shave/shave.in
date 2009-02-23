@@ -20,7 +20,6 @@ shift
 REEL_TOOL="$1"
 shift
 
-hint_cxx=0
 pass_through=0
 preserved_args=
 while test "$#" -gt 0; do
@@ -33,10 +32,6 @@ while test "$#" -gt 0; do
 	;;
     -o)
         lt_output="$1"
-        preserved_args="$preserved_args $opt"
-	;;
-    g++)
-        hint_cxx=1
         preserved_args="$preserved_args $opt"
 	;;
     *)
