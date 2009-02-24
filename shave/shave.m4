@@ -4,9 +4,9 @@ dnl SHAVE_INIT([shavedir],[default_mode])
 dnl
 dnl shavedir: the directory where the shave scripts are, it defaults to
 dnl           $(top_builddir)
-dnl default_mode: (quiet|verbose) default shave mode.  This parameter controls
-dnl               the behaviour of shave when no option has been given to
-dnl               configure.  It defaults to verbose (ie shave disabled)
+dnl default_mode: (enable|disable) default shave mode.  This parameter
+dnl               controls shave's behaviour when no option has been
+dnl               given to configure.  It defaults to disable.
 dnl
 dnl * SHAVE_INIT should be called late in your configure.(ac|in) file (just
 dnl   before AC_CONFIG_FILE/AC_OUTPUT is perfect.  This macro rewrites CC and
@@ -27,7 +27,7 @@ AC_DEFUN([_SHAVE_ARG_ENABLE],
 AC_DEFUN([SHAVE_INIT],
 [
   dnl you can tweak the default value of enable_shave
-  m4_if([$2], [quiet], [_SHAVE_ARG_ENABLE(yes)], [_SHAVE_ARG_ENABLE(no)])
+  m4_if([$2], [enable], [_SHAVE_ARG_ENABLE(yes)], [_SHAVE_ARG_ENABLE(no)])
 
   if test x"$enable_shave" = xyes; then
     dnl where can we find the shave scripts?
