@@ -4,7 +4,7 @@ AC_CONFIG_MACRO_DIR([../shave])
 AC_CONFIG_HEADERS([config.h])
 AC_PROG_LIBTOOL
 AC_PROG_CC
-SHAVE_INIT([../shave])
+SHAVE_INIT([../shave], [quiet])
 AC_CONFIG_FILES([
     ../shave/shave
     ../shave/shave-libtool
