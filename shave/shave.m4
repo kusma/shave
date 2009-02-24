@@ -32,8 +32,8 @@ AC_DEFUN([SHAVE_INIT],
   if test x"$enable_shave" = xyes; then
     dnl where can we find the shave scripts?
     m4_if([$1],,
-      [shavedir='$(top_builddir)'],
-      [shavedir='$(top_builddir)'/$1])
+      [shavedir="$ac_pwd"],
+      [shavedir="$ac_pwd/$1"])
     AC_SUBST(shavedir)
 
     dnl make is now quiet
@@ -45,17 +45,14 @@ AC_DEFUN([SHAVE_INIT],
 
     dnl substitute libtool
     SHAVE_SAVED_LIBTOOL=$LIBTOOL
-    AC_SUBST(SHAVE_SAVED_LIBTOOL)
-    LIBTOOL="\$(SHELL) \$(shavedir)/shave-libtool '\$(SHAVE_SAVED_LIBTOOL)'"
+    LIBTOOL="${SHELL} ${shavedir}/shave-libtool '${SHAVE_SAVED_LIBTOOL}'"
     AC_SUBST(LIBTOOL)
 
     dnl substitute cc/cxx
     SHAVE_SAVED_CC=$CC
     SHAVE_SAVED_CXX=$CXX
-    AC_SUBST(SHAVE_SAVED_CC)
-    AC_SUBST(SHAVE_SAVED_CXX)
-    CC="\$(SHELL) \$(shavedir)/shave cc '\$(SHAVE_SAVED_CC)'"
-    CXX="\$(SHELL) \$(shavedir)/shave cxx '\$(SHAVE_SAVED_CXX)'"
+    CC="${SHELL} ${shavedir}/shave cc ${SHAVE_SAVED_CC}"
+    CXX="${SHELL} ${shavedir}/shave cxx ${SHAVE_SAVED_CXX}"
     AC_SUBST(CC)
     AC_SUBST(CXX)
 
