@@ -50,6 +50,12 @@ link,*)
 *,cc)
     Q="  CC    "
     ;;
+*,fc)
+    Q="  FC    "
+    ;;
+*,f77)
+    Q="  F77   "
+    ;;
 *,*)
     # should not happen
     Q="  CC    "

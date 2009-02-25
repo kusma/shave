@@ -51,10 +51,16 @@ AC_DEFUN([SHAVE_INIT],
     dnl substitute cc/cxx
     SHAVE_SAVED_CC=$CC
     SHAVE_SAVED_CXX=$CXX
+    SHAVE_SAVED_FC=$FC
+    SHAVE_SAVED_F77=$F77
     CC="${SHELL} ${shavedir}/shave cc ${SHAVE_SAVED_CC}"
     CXX="${SHELL} ${shavedir}/shave cxx ${SHAVE_SAVED_CXX}"
+    FC="${SHELL} ${shavedir}/shave fc ${SHAVE_SAVED_FC}"
+    F77="${SHELL} ${shavedir}/shave f77 ${SHAVE_SAVED_F77}"
     AC_SUBST(CC)
     AC_SUBST(CXX)
+    AC_SUBST(FC)
+    AC_SUBST(F77)
 
     V=@
   else
