@@ -1,4 +1,5 @@
 dnl Make automake/libtool output more friendly to humans
+dnl  Damien Lespiau <damien.lespiau@gmail.com>
 dnl
 dnl SHAVE_INIT([shavedir],[default_mode])
 dnl
