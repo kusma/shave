@@ -1,4 +1,128 @@
-shave transforms the messy ouput of autotools into a pretty Kbuild-like one.
+
+
+	shave
+	-----
+
+Fed up with endless screens of libtool/automake output? Fed up with
+having to resort to -Werror to see warnings in your code? Then shave
+might be for you.  shave transforms the messy output of autotools into
+a pretty Kbuild-like one (Kbuild is the Linux build system). It’s
+composed of a m4 macro and 2 small shell scripts.
+
+Hopefully, in a few minutes, you should be able to see your project
+compile like this:
+
+$ make
+Making all in foo
+  GEN   lib-file2.h
+Making all in internal
+  CC    internal-file0.o
+  LINK  libinternal.la
+  CC    lib-file0.o
+  CC    lib-file1.o
+  LINK  libfoo.la
+Making all in tools
+  CC    tool0-tool0.o
+  LINK  tool0
+
+Just like Kbuild, shave supports outputting the underlying commands using:
+
+$ make V=1
+
+shave can be enabled/disabled at configure time with the --enable-shave
+option.
+
+
+	Getting shave
+	-------------
+
+You can download shave either by grabbing a release tarball at:
+
+	http://download.lespiau.name/shave
+
+or by cloning a git repository:
+
+	git clone git://git.lespiau.name/shave
+
+
+	Setup
+	-----
+
+* Put the two shell scripts shave.in and shave-libtool.in in the
+  directory of your choice (it can be at the root of your autotooled
+  project),
+* add shave and shave-libtool to AC_CONFIG_FILES,
+* add shave.m4 either in acinclude.m4 or your macro directory,
+* add a call to SHAVE_INIT just before AC_CONFIG_FILES/AC_OUTPUT.
+  SHAVE_INIT takes two (optionals) arguments:
+      - the directory where shave and shave-libtool are,
+      - enable/disable: wether shave will be enabled or disabled by
+        default.
+
+As usual with the autotools, copy & paste from an already shaved
+project is likely to be the most used way to make shave work for you.
+
+
+	Custom rules
+	------------
+
+Sometimes you have custom Makefile rules, e.g. to generate a small
+header, run glib-mkenums or glib-genmarshal. It would be nice to output
+a pretty ‘GEN’ line. That’s quite easy actually, just add a line at the
+top of your Makefile.am (Q is defined by shave.m4)
+
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
+and then it’s just a matter of prepending $(QUIET_GEN) to the rule
+creating the file:
+
+lib-file2.h: Makefile
+       $(QUIET_GEN)echo "#define FOO_DEFINE 0xbabe" > lib-file2.h
+
+
+	shave + gtk-doc
+	---------------
+
+gtk-doc + shave + libtool 1.x (2.x is fine) is known to have a small
+issue, a patch is available (gnome bug #572396) and gtk-doc 1.12 will
+have it.  Meanwhile I suggest adding a few lines to your autogen.sh
+script.
+
+sed -e 's#) --mode=compile#) --tag=CC --mode=compile#' gtk-doc.make \
+		> gtk-doc.temp \
+	&& mv gtk-doc.temp gtk-doc.make
+sed -e 's#) --mode=link#) --tag=CC --mode=link#' gtk-doc.make \
+		> gtk-doc.temp \
+        && mv gtk-doc.temp gtk-doc.make
+
+
+	dolt + shave
+	------------
+
+It’s possible to use dolt in conjunction with shave with a surprisingly
+small patch to dolt:
+
+	http://git.lespiau.name/cgit/dolt/commit/?h=shave-dolt
+
+
+	Caveats
+	-------
+
+* Shave defines the Q and V variables that could clash with your
+  Makefiles,
+* In short custom rules and a few automake commands won’t be displayed
+  with make V=1.
+  make V=1 (when having configured your package with --enable-shave) is
+  _NOT_ equivalent to no shave at all (ie --disable-shave). This is
+  because the shave m4 macro is setting MAKEFLAGS=-s in every single
+  Makefile. This means that make won’t print the commands as is used to,
+  and that the only way to print something on the screen is to echo it.
+  It’s precisely what the shave wrappers do, they echo the CC/CXX and
+  LIBTOOL commands when V=1.
+
+
+	Layout
+	------
 
 shave         : the actual thing
 test-flat-nolt: flat layout, no use of litool (broken!)
@@ -11,3 +135,4 @@ To use the tests:
 	* autoreconf --install
 	* ./configure
 	* make
+
