@@ -7,7 +7,7 @@ clean: distclean
 
 dist:
 	git archive --format=tar --prefix=$(PACKAGE)-$(VERSION)/ HEAD \
-	  | bzip2 -f > -$(VERSION).tar.bz2
+	  | bzip2 -f > $(PACKAGE)-$(VERSION).tar.bz2
 
 distclean:
 	rm -f $(PACKAGE)-*.tar.bz2
