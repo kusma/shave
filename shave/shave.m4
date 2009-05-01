@@ -1,15 +1,27 @@
 dnl Make automake/libtool output more friendly to humans
 dnl
 dnl Copyright (c) 2009, Damien Lespiau <damien.lespiau@gmail.com>
-dnl All rights reserved.
 dnl
-dnl Redistribution and use in source and binary forms, with or without
-dnl modification, are permitted provided that the following conditions are met:
-dnl    * Redistributions of source code must retain the above copyright
-dnl      notice, this list of conditions and the following disclaimer.
-dnl    * Redistributions in binary form must reproduce the above copyright
-dnl      notice, this list of conditions and the following disclaimer in the
-dnl      documentation and/or other materials provided with the distribution.
+dnl Permission is hereby granted, free of charge, to any person
+dnl obtaining a copy of this software and associated documentation
+dnl files (the "Software"), to deal in the Software without
+dnl restriction, including without limitation the rights to use,
+dnl copy, modify, merge, publish, distribute, sublicense, and/or sell
+dnl copies of the Software, and to permit persons to whom the
+dnl Software is furnished to do so, subject to the following
+dnl conditions:
+dnl
+dnl The above copyright notice and this permission notice shall be
+dnl included in all copies or substantial portions of the Software.
+dnl
+dnl THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+dnl EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+dnl OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+dnl NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+dnl HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+dnl WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+dnl FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+dnl OTHER DEALINGS IN THE SOFTWARE.
 dnl
 dnl SHAVE_INIT([shavedir],[default_mode])
 dnl
