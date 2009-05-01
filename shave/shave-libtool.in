@@ -43,6 +43,10 @@ pass_though=0
 
 # scan the arguments, keep the right ones for libtool, and discover the mode
 preserved_args=
+
+# have we seen the --tag option of libtool in the command line ?
+tag_seen=0
+
 while test "$#" -gt 0; do
     opt="$1"
     shift
@@ -54,6 +58,10 @@ while test "$#" -gt 0; do
         ;;
     -o)
         lt_output="$1"
+        preserved_args="$preserved_args $opt"
+	;;
+    --tag=*)
+        tag_seen=1
         preserved_args="$preserved_args $opt"
 	;;
     *)
@@ -81,12 +89,21 @@ esac
 lt_unmangle "$lt_output"
 output=$last_result
 
+# automake does not add a --tag switch to its libtool invocation when
+# assembling a .s file and rely on libtool to infer the right action based
+# on the compiler name. As shave is using CC to hook a wrapper, libtool gets
+# confused. Let's detect these cases and add a --tag=CC option.
+tag=""
+if test $tag_seen -eq 0 -a x"$mode" = xcompile; then
+    tag="--tag=CC"
+fi
+
 if test -z $V; then
     if test $pass_though -eq 0; then
         echo "$Q$output"
     fi
-    $LIBTOOL --silent $preserved_args
+    $LIBTOOL --silent $tag $preserved_args
 else
-    echo $LIBTOOL $preserved_args
-    $LIBTOOL $preserved_args
+    echo $LIBTOOL $tag $preserved_args
+    $LIBTOOL $tag $preserved_args
 fi
