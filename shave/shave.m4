@@ -1,5 +1,15 @@
 dnl Make automake/libtool output more friendly to humans
-dnl  Damien Lespiau <damien.lespiau@gmail.com>
+dnl
+dnl Copyright (c) 2009, Damien Lespiau <damien.lespiau@gmail.com>
+dnl All rights reserved.
+dnl
+dnl Redistribution and use in source and binary forms, with or without
+dnl modification, are permitted provided that the following conditions are met:
+dnl    * Redistributions of source code must retain the above copyright
+dnl      notice, this list of conditions and the following disclaimer.
+dnl    * Redistributions in binary form must reproduce the above copyright
+dnl      notice, this list of conditions and the following disclaimer in the
+dnl      documentation and/or other materials provided with the distribution.
 dnl
 dnl SHAVE_INIT([shavedir],[default_mode])
 dnl
