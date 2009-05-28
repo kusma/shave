@@ -125,7 +125,7 @@ small patch to dolt:
 	------
 
 shave         : the actual thing
-test-flat-nolt: flat layout, no use of litool (broken!)
+test-flat-nolt: flat layout, no use of libtool (broken!)
 test-flat-lt  : flat layout, use of libtool
 test          : common layout, libtooled, with noinst libs
 test-cxx      : common layout, libtooled, with noinst libs, C++
