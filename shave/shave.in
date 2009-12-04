@@ -74,6 +74,9 @@ link,*)
 *,cxx)
     Q="  CXX   "
     ;;
+*,ccas)
+    Q="  AS    "
+    ;;
 *,cc)
     Q="  CC    "
     ;;

@@ -72,18 +72,21 @@ AC_DEFUN([SHAVE_INIT],
     AC_SUBST(LIBTOOL)
 
     dnl substitute cc/cxx
+    SHAVE_SAVED_CCAS=$CCAS
     SHAVE_SAVED_CC=$CC
     SHAVE_SAVED_CXX=$CXX
     SHAVE_SAVED_FC=$FC
     SHAVE_SAVED_F77=$F77
     SHAVE_SAVED_OBJC=$OBJC
     SHAVE_SAVED_MCS=$MCS
+    CCAS="${SHELL} ${shavedir}/shave ccas ${SHAVE_SAVED_CCAS}"
     CC="${SHELL} ${shavedir}/shave cc ${SHAVE_SAVED_CC}"
     CXX="${SHELL} ${shavedir}/shave cxx ${SHAVE_SAVED_CXX}"
     FC="${SHELL} ${shavedir}/shave fc ${SHAVE_SAVED_FC}"
     F77="${SHELL} ${shavedir}/shave f77 ${SHAVE_SAVED_F77}"
     OBJC="${SHELL} ${shavedir}/shave objc ${SHAVE_SAVED_OBJC}"
     MCS="${SHELL} ${shavedir}/shave mcs ${SHAVE_SAVED_MCS}"
+    AC_SUBST(CCAS)
     AC_SUBST(CC)
     AC_SUBST(CXX)
     AC_SUBST(FC)
