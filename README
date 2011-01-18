@@ -1,4 +1,11 @@
 
+WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
+
+Automake 1.11 has been release with "silent rules" support, a feature that
+supersedes the hack that shave is. If you can depend on automake 1.11 please
+consider using its silent rules rather than shave.
+
+WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING 
 
 	shave
 	-----
