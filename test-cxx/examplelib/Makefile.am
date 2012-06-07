@@ -13,4 +13,5 @@ INCLUDES = -I$(top_srcdir)
 lib_LTLIBRARIES= libexamplelib-1.0.la
 libexamplelib_1_0_la_SOURCES= $(h_sources) $(cc_sources)
 libexamplelib_1_0_la_LIBADD= sub/libsub.la
+libexamplelib_1_0_la_CPPFLAGS=-DSOME_STRING=\"some-text\ and\ some-more-text\"
 
