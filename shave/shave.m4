@@ -55,8 +55,8 @@ AC_DEFUN([SHAVE_INIT],
   if test x"$enable_shave" = xyes; then
     dnl where can we find the shave scripts?
     m4_if([$1],,
-      [shavedir="$ac_pwd"],
-      [shavedir="$ac_pwd/$1"])
+      [shavedir='$(top_builddir)'],
+      [shavedir='$(top_builddir)'/$1])
     AC_SUBST(shavedir)
 
     dnl make is now quiet
