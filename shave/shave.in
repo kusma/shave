@@ -43,7 +43,7 @@ REEL_TOOL="$1"
 shift
 
 pass_through=0
-preserved_args=
+preserved_args=()
 while test "$#" -gt 0; do
     opt="$1"
     shift
@@ -54,14 +54,14 @@ while test "$#" -gt 0; do
         ;;
     -o)
         lt_output="$1"
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
         ;;
     -out:*|/out:*)
         lt_output="${opt#-out:}"
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
         ;;
     *)
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
         ;;
       esac
 done
@@ -108,8 +108,8 @@ if test -z $V; then
     if test $pass_through -eq 0; then
         echo "$Q$output"
     fi
-    eval $REEL_TOOL $preserved_args
+    $REEL_TOOL "${preserved_args[@]}"
 else
-    echo $REEL_TOOL $preserved_args
-    eval $REEL_TOOL $preserved_args
+    echo $REEL_TOOL ${preserved_args[@]}
+    $REEL_TOOL "${preserved_args[@]}"
 fi

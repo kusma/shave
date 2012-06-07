@@ -42,7 +42,7 @@ shift
 pass_though=0
 
 # scan the arguments, keep the right ones for libtool, and discover the mode
-preserved_args=
+preserved_args=()
 
 # have we seen the --tag option of libtool in the command line ?
 tag_seen=0
@@ -54,18 +54,18 @@ while test "$#" -gt 0; do
     case $opt in
     --mode=*)
         mode=`echo $opt | $SED -e 's/[-_a-zA-Z0-9]*=//'`
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
         ;;
     -o)
         lt_output="$1"
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
 	;;
     --tag=*)
         tag_seen=1
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
 	;;
     *)
-        preserved_args="$preserved_args $opt"
+        preserved_args+=("$opt")
         ;;
       esac
 done
@@ -73,11 +73,11 @@ done
 case "$mode" in
 compile)
     # shave will be called and print the actual CC/CXX/LINK line
-    preserved_args="$preserved_args --shave-mode=$mode"
+    preserved_args+=("--shave-mode=$mode")
     pass_though=1
     ;;
 link)
-    preserved_args="$preserved_args --shave-mode=$mode"
+    preserved_args+=("--shave-mode=$mode")
     Q="  LINK  "
     ;;
 *)
@@ -102,8 +102,8 @@ if test -z $V; then
     if test $pass_though -eq 0; then
         echo "$Q$output"
     fi
-    $LIBTOOL --silent $tag $preserved_args
+    $LIBTOOL --silent $tag "${preserved_args[@]}"
 else
-    echo $LIBTOOL $tag $preserved_args
-    $LIBTOOL $tag $preserved_args
+    echo $LIBTOOL $tag ${preserved_args[@]}
+    $LIBTOOL $tag "${preserved_args[@]}"
 fi
